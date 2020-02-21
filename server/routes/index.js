@@ -6,9 +6,10 @@ const { createPost } = require('../controllers');
 
 router.get('/posts', getPosts);
 router.post('/create-post', createPost);
-router.use((req, res) => {
-  const filePath = path.join(__dirname, '..', '..', 'public', '404.html');
-  res.sendFile(filePath);
+router.use((req, res, next) => {
+  const err = new Error('not found');
+  err.statusCode = 404;
+  next(err);
 });
 
 

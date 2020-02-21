@@ -17,8 +17,11 @@ app.use(favicon(path.join(__dirname, '..', 'public', 'img', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(router);
 app.use((err, req, res, next) => {
-  const filePath = path.join(__dirname, '..', 'public', '500.html');
-  res.sendFile(filePath);
+  res.statusCode = err.statusCode || 500;
+  const errMessage = res.statusCode === 500 ? 'server crashed' : err.message;
+  res.json({
+    error: errMessage,
+  });
 });
 
 module.exports = app;
