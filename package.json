@@ -1,0 +1,35 @@
+{
+  "name": "express-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "coverage": "jest --coverage",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G8/express-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G8/express-assignment/issues"
+  },
+  "homepage": "https://github.com/GSG-G8/express-assignment#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
