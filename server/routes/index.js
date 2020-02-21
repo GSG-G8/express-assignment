@@ -1,3 +1,6 @@
-const rounter = require('express').Router();
+const router = require('express').Router();
+const { getPosts } = require('../controllers');
 
-module.exports = rounter;
+router.get('/posts', getPosts);
+
+module.exports = router;
