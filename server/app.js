@@ -15,5 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(favicon(path.join(__dirname, '..', 'public', 'img', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(router);
+app.use((err, req, res, next) => {
+  const filePath = path.join(__dirname, '..', 'public', '500.html');
+  res.sendFile(filePath);
+});
 
 module.exports = app;
