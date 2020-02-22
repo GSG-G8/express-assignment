@@ -1,4 +1,6 @@
 const postContainer = document.getElementsByClassName('post-container')[0];
+const postBtn = document.getElementsByClassName('entry-container-btn')[0];
+const postText = document.getElementsByClassName('entry-container-textarea')[0];
 
 const displayPosts = (posts) => {
   postContainer.textContent = '';
@@ -23,7 +25,16 @@ const displayEmptyPosts = () => {
 };
 
 const displayErr = (status, text) => {
-  console.log(status, text);
+  if (status === 404) window.location.href = '../404.html';
+  else window.location.href = '../500.html';
+};
+
+const makePost = (endpoint, data) => {
+  postReq(endpoint, data)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      displayErr(res.status, res.statusText);
+    }).then((res) => displayPosts(Object.values(res))).catch(console.log);
 };
 
 getReq('/posts')
@@ -33,12 +44,9 @@ getReq('/posts')
   })
   .then((postsObj) => {
     const posts = Object.values(postsObj);
-    if (posts.length === 0) {
-      displayEmptyPosts();
-      console.log('here');
-    } else {
-      displayPosts(posts);
-      console.log('eles');
-    }
+    if (posts.length === 0) displayEmptyPosts();
+    else displayPosts(posts);
   })
   .catch((err) => console.log(err));
+
+postBtn.addEventListener('click', () => { makePost('/create-post', postText.value); postText.value = ''; });
