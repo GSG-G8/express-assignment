@@ -25,8 +25,8 @@ const displayEmptyPosts = () => {
 };
 
 const displayErr = (status, text) => {
-  if (status === 404) window.location.href = '../404.html';
-  else window.location.href = '../500.html';
+  if (status === 404) window.location.href = '/404.html';
+  else window.location.href = '/500.html';
 };
 
 const makePost = (endpoint, data) => {
